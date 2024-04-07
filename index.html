@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="asset/Pokèdex.png" type="image/x-icon">
+    <title>Pokédex</title>
+    <style>
+        .boxSuggerimentiRicerca {
+            width: 177px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: wheat;
+            justify-content: space-around;
+            animation: boxSuggerimenti 0.5s linear forwards;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .listaPokemon {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .boxPokemon {
+            background-color: red;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* @keyframes boxSuggerimenti {
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: 100px;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <input type="text" name="cerca" id="cerca">
+    <!-- <div class="boxSuggerimentiRicerca hidden"></div> -->
+    <div class="listaPokemon"></div>
+</body>
+<script src="script.js"></script>
+
+</html>

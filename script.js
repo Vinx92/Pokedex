@@ -6,8 +6,10 @@ const NOME_POKEMON = document.getElementById("nomePokemon");
 const LISTA_POKEMON = document.querySelector(".listaPokemon");
 const BOX_SPINNER = document.querySelector(".boxSpinner");
 
-async function tuttiIPokemon() {
-  BOX_SPINNER.classList.remove("hidden");
+const ciao = document.getElementById('img')
+
+async function tuttiPoke() {
+  // BOX_SPINNER.classList.remove("hidden");
   try {
     const TUTTI_POKEMON = await fetch(
       "https://pokeapi.co/api/v2/pokemon?offset=0&limit=151"
@@ -17,25 +19,28 @@ async function tuttiIPokemon() {
     // console.log(POKEMON);
     POKEMON.results.forEach(async (element) => {
       let boxPokemon = document.createElement("div");
+
       boxPokemon.classList.add("boxPokemon");
-      LISTA_POKEMON.appendChild(boxPokemon);
+      // LISTA_POKEMON.appendChild(boxPokemon);
 
       let nomePokemon = document.createElement("h3");
       nomePokemon.textContent = element.name;
-      boxPokemon.appendChild(nomePokemon);
+      // boxPokemon.appendChild(nomePokemon);
       try {
         const POKEMON_SINGOLO = await fetch(element.url);
         const FILE_POKEMON_SINGOLO = await POKEMON_SINGOLO.json();
-        console.log(FILE_POKEMON_SINGOLO);
+        // console.log(FILE_POKEMON_SINGOLO);
+        boxPokemon.id = FILE_POKEMON_SINGOLO.id;
+
         let imgPokemon = document.createElement("img");
-        imgPokemon.src = FILE_POKEMON_SINGOLO.sprites.front_default;
+        ciao.src = FILE_POKEMON_SINGOLO.sprites.front_default;
         imgPokemon.alt = `${element.name}`;
-        boxPokemon.insertAdjacentElement("afterbegin", imgPokemon);
+        // boxPokemon.insertAdjacentElement("afterbegin", imgPokemon);
 
         FILE_POKEMON_SINGOLO.types.forEach((tipo) => {
           let tipoPokemon = document.createElement("span");
           tipoPokemon.textContent = tipo.type.name;
-          nomePokemon.insertAdjacentElement("beforebegin", tipoPokemon);
+          // nomePokemon.insertAdjacentElement("beforebegin", tipoPokemon);
         });
       } catch (error) {
         console.error(error);
@@ -44,11 +49,11 @@ async function tuttiIPokemon() {
   } catch (error) {
     console.error(error);
   }
-  BOX_SPINNER.classList.add("hidden");
+  // BOX_SPINNER.classList.add("hidden");
 }
-tuttiIPokemon();
+tuttiPoke();
 
-async function pokeApi(valore) {
+async function ricercaPoke(valore) {
   BOX_SPINNER.classList.remove("hidden");
   try {
     // console.log(valore);
@@ -61,6 +66,7 @@ async function pokeApi(valore) {
 
     let esitoRicerca = false;
     let nonTrovato = document.createElement("h4");
+    let arrPokemonRicerca = []
     // console.log(esitoRicerca);
 
     filePokemon.results.forEach(async (element) => {
@@ -71,7 +77,11 @@ async function pokeApi(valore) {
           const fileImmaginePokemon = await immaginePokemon.json();
           // console.log(fileImmaginePokemon);
 
+          arrPokemonRicerca.push(fileImmaginePokemon.id)
+          arrPokemonRicerca.sort((a,b) => a - b)
+
           let boxPokemon = document.createElement("div");
+          boxPokemon.id = fileImmaginePokemon.id;
           boxPokemon.classList.add("boxPokemon");
           LISTA_POKEMON.appendChild(boxPokemon);
 
@@ -100,6 +110,7 @@ async function pokeApi(valore) {
         esitoRicerca = false;
       }
     });
+    console.log(arrPokemonRicerca)
     if (esitoRicerca === false) {
       nonTrovato.textContent = "pokemon non trovato";
       LISTA_POKEMON.appendChild(nonTrovato);
@@ -110,13 +121,22 @@ async function pokeApi(valore) {
   BOX_SPINNER.classList.add("hidden");
 }
 
-CERCA.addEventListener("input", () => {
+// CERCA.addEventListener("input", () => {
   // if (CERCA.value === "") {
   // SUGGERIMENTI.classList.add("hidden");
+  // LISTA_POKEMON.innerHTML = "";
+  // tuttiPoke()
   // } else {
-  LISTA_POKEMON.innerHTML = "";
+  // LISTA_POKEMON.innerHTML = "";
   // SUGGERIMENTI.classList.remove("hidden");
-  let valoreMinuscolo = CERCA.value.toLowerCase();
-  pokeApi(valoreMinuscolo);
+  // let valoreMinuscolo = CERCA.value.toLowerCase();
+  // ricercaPoke(valoreMinuscolo);
   // }
-});
+// });
+
+let ar = ["ciao", "vieni", "giovanni", "ruga"];
+ar.sort();
+console.log(ar);
+let ar1 = [1, 2, 3, 50, 20, 4, 10];
+ar1.sort((a, b) => a - b);
+console.log(ar1);

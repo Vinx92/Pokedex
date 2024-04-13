@@ -6,10 +6,12 @@ async function tuttiPoke() {
       "https://pokeapi.co/api/v2/pokemon?offset=0&limit=151"
     );
     const JSON_TUTTI_POKEMON = await TUTTI_I_POKEMON.json();
-    JSON_TUTTI_POKEMON.results.forEach(async (pokemon) => {
-      const URL_POKEMON = await fetch(pokemon.url);
+
+    for (let i = 0; i < JSON_TUTTI_POKEMON.results.length; i++) {
+      
+      const POKEMON = JSON_TUTTI_POKEMON.results[i];
+      const URL_POKEMON = await fetch(POKEMON.url);
       const JSON_URL_POKEMON = await URL_POKEMON.json();
-      console.log(JSON_URL_POKEMON);
 
       const CARD = document.createElement("div");
       CARD.classList.add("card", "mt-3", "ms-3", "bg-body-tertiary");
@@ -114,14 +116,22 @@ async function tuttiPoke() {
             TAGS.textContent = tipo.type.name;
             CONTENITORE_TAGS.appendChild(TAGS);
             break;
-          default:
+          case "ghost":
+            TAGS.classList.add("tags", "fantasma");
+            TAGS.textContent = tipo.type.name;
+            CONTENITORE_TAGS.appendChild(TAGS);
+            break;
+          case "dragon":
+            TAGS.classList.add("tags", "drago");
+            TAGS.textContent = tipo.type.name;
+            CONTENITORE_TAGS.appendChild(TAGS);
             break;
         }
         TAGS.classList.add("tags");
         TAGS.textContent = tipo.type.name;
         CONTENITORE_TAGS.appendChild(TAGS);
       });
-    });
+    }
   } catch (error) {
     alert(error);
   }

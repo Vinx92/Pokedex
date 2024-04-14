@@ -1,18 +1,20 @@
 import { creazioneCard, tuttiPoke, smistamentoTipo } from "./funzioni.js";
 const LISTA_POKEMON = document.querySelector(".listaPokemon");
 const INPUT_RICERCA = document.getElementById("inputRicerca");
-const SUGGERIMENTI_RICERCA = document.querySelector(".suggerimentiRicerca");
+const SUGGERIMENTI_RICERCA = document.getElementById("suggerimentiRicerca");
 
 tuttiPoke(LISTA_POKEMON);
 
 INPUT_RICERCA.addEventListener("input", function () {
-  if (INPUT_RICERCA.value === "") {
-    SUGGERIMENTI_RICERCA.innerHTML = "";
-    SUGGERIMENTI_RICERCA.classList.add("hidden");
-  } else {
+  if (INPUT_RICERCA.value !== "") {
     let inputRicercaMinuscolo = INPUT_RICERCA.value.toLowerCase();
     SUGGERIMENTI_RICERCA.innerHTML = "";
     ricercaPoke(inputRicercaMinuscolo, SUGGERIMENTI_RICERCA);
+    console.log("pieno");
+  } else {
+    SUGGERIMENTI_RICERCA.classList.add("hidden");
+    SUGGERIMENTI_RICERCA.innerHTML = "";
+    console.log("vuoto");
   }
 });
 
@@ -29,7 +31,6 @@ async function ricercaPoke(input, ricerca) {
         const URL_POKEMON = await fetch(POKEMON.url);
         const JSON_URL_POKEMON = await URL_POKEMON.json();
 
-        ricerca = document.querySelector(".suggerimentiRicerca");
         ricerca.classList.remove("hidden");
 
         const BOX_POKEMON = document.createElement("div");
@@ -52,19 +53,19 @@ async function ricercaPoke(input, ricerca) {
         NOME_POKEMON.textContent = JSON_URL_POKEMON.name;
         NOME_POKEMON.classList.add("fs-5", "fw-medium");
         BOX_POKEMON.appendChild(NOME_POKEMON);
-      } 
-    //   else if (
-    //     INPUT_RICERCA.value !=
-    //     JSON_TUTTI_POKEMON.results[i].name.includes(input)
-    //   ) {
-    //     const BOX_POKEMON = document.createElement("div");
-    //     BOX_POKEMON.classList.add("d-flex", "align-items-center");
-    //     ricerca.appendChild(BOX_POKEMON);
+      }
+      //   else if (
+      //     INPUT_RICERCA.value !=
+      //     JSON_TUTTI_POKEMON.results[i].name.includes(input)
+      //   ) {
+      //     const BOX_POKEMON = document.createElement("div");
+      //     BOX_POKEMON.classList.add("d-flex", "align-items-center");
+      //     ricerca.appendChild(BOX_POKEMON);
 
-    //     const NON_TROVATO = document.createElement("span");
-    //     NON_TROVATO.textContent = `${INPUT_RICERCA.value} non è stato trovato`;
-    //     BOX_POKEMON.appendChild(NON_TROVATO);
-    //   }
+      //     const NON_TROVATO = document.createElement("span");
+      //     NON_TROVATO.textContent = `${INPUT_RICERCA.value} non è stato trovato`;
+      //     BOX_POKEMON.appendChild(NON_TROVATO);
+      //   }
     }
   } catch (error) {
     alert(error);

@@ -1,10 +1,26 @@
 .navbar {
-    position: sticky;
-    top: 0px;
-    z-index: 1000;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+}
+
+.suggerimentiRicerca {
+  width: 289px;
+  background-color: white;
+  position: absolute;
+  z-index: 1001;
+  top: 63px;
+  left: 618px;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
 }
 
 .listaPokemon {
+  margin-bottom: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
@@ -24,7 +40,7 @@
 }
 
 .sfondo {
-  background-image: url(asset/Back-ground-pokemon.png);
+  background-image: url(../asset/Back-ground-pokemon.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -221,11 +237,11 @@
 }
 
 .drago {
-border: 1px solid teal;
-color: teal;
+  border: 1px solid teal;
+  color: teal;
 }
 
-.drago:hover{
+.drago:hover {
   transition: 0.5s linear;
   background-color: teal;
   color: white;

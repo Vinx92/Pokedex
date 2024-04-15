@@ -88,7 +88,7 @@ async function ricercaPoke(input) {
 
       const IMG = document.createElement("img");
       IMG.style.width = 100 + "%";
-      IMG.src = "../asset/Non-trovato.png";
+      IMG.src = "/asset/Non-trovato.png";
       IMG.alt = "sfera pokè";
       CONT_IMG.appendChild(IMG);
     }

@@ -14,6 +14,7 @@ NAV.addEventListener("click", function () {
 
 INPUT_RICERCA.addEventListener("input", function () {
   let inputMinuscolo = INPUT_RICERCA.value.toLowerCase();
+  console.log(typeof inputMinuscolo)
   if (INPUT_RICERCA.value != "") {
     SUGGERIMENTI_RICERCA.innerHTML = "";
     SUGGERIMENTI_RICERCA.classList.remove("hidden");
@@ -88,7 +89,7 @@ async function ricercaPoke(input) {
 
       const IMG = document.createElement("img");
       IMG.style.width = 100 + "%";
-      IMG.src = "../asset/Non-trovato.png";
+      IMG.src = "asset/Non-trovato.png";
       IMG.alt = "sfera pokè";
       CONT_IMG.appendChild(IMG);
     }

@@ -6,6 +6,7 @@ const RICERCA = document.getElementById("ricerca");
 const FILTRO = document.getElementById("filtro");
 const ARROW = document.getElementById("arrow");
 const BOX_FILTRI = document.querySelector(".boxFiltri");
+const CHECKBOX = document.querySelectorAll('input[type="checkbox"]');
 
 tuttiPoke();
 
@@ -59,32 +60,32 @@ async function ricercaGrande(input) {
         const POKEMON = POKEMON_TROVATI[i];
         const URL_POKEMON = await fetch(POKEMON.url);
         const JSON_URL_POKEMON = await URL_POKEMON.json();
-  
+
         const CARD = document.createElement("div");
         CARD.classList.add("card", "mt-3", "ms-3", "bg-body-tertiary");
         CARD.style.width = 15 + "rem";
         CARD.id = JSON_URL_POKEMON.id;
         LISTA_POKEMON.appendChild(CARD);
-  
+
         const IMG_POKEMON = document.createElement("img");
         IMG_POKEMON.classList.add("card-img-top", "sfondo");
         IMG_POKEMON.src = JSON_URL_POKEMON.sprites.front_default;
         IMG_POKEMON.alt = `immagine di ${JSON_URL_POKEMON.name}`;
         CARD.appendChild(IMG_POKEMON);
-  
+
         const CARD_BODY = document.createElement("div");
         CARD_BODY.classList.add("card-body");
         CARD.appendChild(CARD_BODY);
-  
+
         const NOME_POKEMON = document.createElement("h5");
         NOME_POKEMON.classList.add("card-text", "text-center");
         NOME_POKEMON.textContent = JSON_URL_POKEMON.name.toUpperCase();
         CARD_BODY.appendChild(NOME_POKEMON);
-  
+
         const CONTENITORE_TAGS = document.createElement("div");
         CONTENITORE_TAGS.classList.add("d-flex", "justify-content-evenly");
         CARD_BODY.appendChild(CONTENITORE_TAGS);
-  
+
         JSON_URL_POKEMON.types.forEach((tipo) => {
           const TAGS = document.createElement("button");
           switch (tipo.type.name) {
@@ -178,7 +179,7 @@ async function ricercaGrande(input) {
       }
     } else {
       const CONT_IMG = document.createElement("div");
-      CONT_IMG.classList.add('contImg')
+      CONT_IMG.classList.add("contImg");
       CONT_IMG.style.width = 100 + "%";
       CONT_IMG.style.height = 100 + "%";
       LISTA_POKEMON.appendChild(CONT_IMG);

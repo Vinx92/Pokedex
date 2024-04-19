@@ -7,17 +7,35 @@ const FILTRO = document.getElementById("filtro");
 const ARROW = document.getElementById("arrow");
 const BOX_FILTRI = document.querySelector(".boxFiltri");
 const CHECKBOX = document.querySelectorAll('input[type="checkbox"]');
+const SPINNER = document.querySelector(".boxSpinner");
+
+let tipiAttivi = 0;
+let ricercaTipi = [];
 
 tuttiPoke();
 
 for (let i = 0; i < CHECKBOX.length; i++) {
   CHECKBOX[i].addEventListener("change", function (e) {
-    if (e.target.checked) {
+    if (e.target.checked && tipiAttivi == 0) {
+      tipiAttivi += 1;
+      ricercaTipi.push(CHECKBOX[i].name);
       LISTA_POKEMON.innerHTML = "";
       filtroTipo(CHECKBOX[i].name);
+    } else if (e.target.checked && tipiAttivi > 0) {
+      tipiAttivi += 1;
+      ricercaTipi.push(CHECKBOX[i].name);
+      filtroTipo(CHECKBOX[i].name);
     } else {
+      ricercaTipi.splice(trovaIndex(ricercaTipi, CHECKBOX[i].name), 1);
+      tipiAttivi -= 1;
       LISTA_POKEMON.innerHTML = "";
-      tuttiPoke();
+      for (let y = 0; y < ricercaTipi.length; y++) {
+        filtroTipo(ricercaTipi[y]);
+      }
+      if (tipiAttivi == 0) {
+        LISTA_POKEMON.innerHTML = "";
+        tuttiPoke();
+      }
     }
   });
 }
@@ -67,134 +85,131 @@ async function filtroTipo(input) {
       const POKEMON = JSON_TUTTI_POKEMON.results[i];
       const URL_POKEMON = await fetch(POKEMON.url);
       const JSON_URL_POKEMON = await URL_POKEMON.json();
-      // console.log(JSON_URL_POKEMON)
 
       for (let x = 0; x < JSON_URL_POKEMON.types.length; x++) {
-        // console.log(JSON_URL_POKEMON.types[x].type.name)
         if (JSON_URL_POKEMON.types[x].type.name.includes(input)) {
           const POKEMON = JSON_TUTTI_POKEMON.results[i];
-      const URL_POKEMON = await fetch(POKEMON.url);
-      const JSON_URL_POKEMON = await URL_POKEMON.json();
+          const URL_POKEMON = await fetch(POKEMON.url);
+          const JSON_URL_POKEMON = await URL_POKEMON.json();
 
-      const CARD = document.createElement("div");
-      CARD.classList.add("card", "mt-3", "ms-3", "bg-body-tertiary");
-      CARD.style.width = 15 + "rem";
-      CARD.id = JSON_URL_POKEMON.id;
-      LISTA_POKEMON.appendChild(CARD);
+          const CARD = document.createElement("div");
+          CARD.classList.add("card", "mt-3", "ms-3", "bg-body-tertiary");
+          CARD.style.width = 15 + "rem";
+          CARD.id = JSON_URL_POKEMON.id;
+          LISTA_POKEMON.appendChild(CARD);
 
-      const IMG_POKEMON = document.createElement("img");
-      IMG_POKEMON.classList.add("card-img-top", "sfondo");
-      IMG_POKEMON.src = JSON_URL_POKEMON.sprites.front_default;
-      IMG_POKEMON.alt = `immagine di ${JSON_URL_POKEMON.name}`;
-      CARD.appendChild(IMG_POKEMON);
+          const IMG_POKEMON = document.createElement("img");
+          IMG_POKEMON.classList.add("card-img-top", "sfondo");
+          IMG_POKEMON.src = JSON_URL_POKEMON.sprites.front_default;
+          IMG_POKEMON.alt = `immagine di ${JSON_URL_POKEMON.name}`;
+          CARD.appendChild(IMG_POKEMON);
 
-      const CARD_BODY = document.createElement("div");
-      CARD_BODY.classList.add("card-body");
-      CARD.appendChild(CARD_BODY);
+          const CARD_BODY = document.createElement("div");
+          CARD_BODY.classList.add("card-body");
+          CARD.appendChild(CARD_BODY);
 
-      const NOME_POKEMON = document.createElement("h5");
-      NOME_POKEMON.classList.add("card-text", "text-center");
-      NOME_POKEMON.textContent = JSON_URL_POKEMON.name.toUpperCase();
-      CARD_BODY.appendChild(NOME_POKEMON);
+          const NOME_POKEMON = document.createElement("h5");
+          NOME_POKEMON.classList.add("card-text", "text-center");
+          NOME_POKEMON.textContent = JSON_URL_POKEMON.name.toUpperCase();
+          CARD_BODY.appendChild(NOME_POKEMON);
 
-      const CONTENITORE_TAGS = document.createElement("div");
-      CONTENITORE_TAGS.classList.add("d-flex", "justify-content-evenly");
-      CARD_BODY.appendChild(CONTENITORE_TAGS);
+          const CONTENITORE_TAGS = document.createElement("div");
+          CONTENITORE_TAGS.classList.add("d-flex", "justify-content-evenly");
+          CARD_BODY.appendChild(CONTENITORE_TAGS);
 
-      JSON_URL_POKEMON.types.forEach((tipo) => {
-        const TAGS = document.createElement("button");
-        switch (tipo.type.name) {
-          case "fire":
-            TAGS.classList.add("tags", "fuoco");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "grass":
-            TAGS.classList.add("tags", "erba");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "poison":
-            TAGS.classList.add("tags", "veleno");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "ground":
-            TAGS.classList.add("tags", "terra");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "flying":
-            TAGS.classList.add("tags", "volante");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "water":
-            TAGS.classList.add("tags", "acqua");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "bug":
-            TAGS.classList.add("tags", "coleottero");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "normal":
-            TAGS.classList.add("tags", "normale");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "electric":
-            TAGS.classList.add("tags", "elettro");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "fairy":
-            TAGS.classList.add("tags", "fata");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "fighting":
-            TAGS.classList.add("tags", "lotta");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "psychic":
-            TAGS.classList.add("tags", "psico");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "rock":
-            TAGS.classList.add("tags", "roccia");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "steel":
-            TAGS.classList.add("tags", "metallo");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "ice":
-            TAGS.classList.add("tags", "ghiaccio");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "ghost":
-            TAGS.classList.add("tags", "fantasma");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-          case "dragon":
-            TAGS.classList.add("tags", "drago");
-            TAGS.textContent = tipo.type.name;
-            CONTENITORE_TAGS.appendChild(TAGS);
-            break;
-        }
-      })
+          JSON_URL_POKEMON.types.forEach((tipo) => {
+            const TAGS = document.createElement("button");
+            switch (tipo.type.name) {
+              case "fire":
+                TAGS.classList.add("tags", "fuoco");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "grass":
+                TAGS.classList.add("tags", "erba");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "poison":
+                TAGS.classList.add("tags", "veleno");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "ground":
+                TAGS.classList.add("tags", "terra");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "flying":
+                TAGS.classList.add("tags", "volante");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "water":
+                TAGS.classList.add("tags", "acqua");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "bug":
+                TAGS.classList.add("tags", "coleottero");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "normal":
+                TAGS.classList.add("tags", "normale");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "electric":
+                TAGS.classList.add("tags", "elettro");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "fairy":
+                TAGS.classList.add("tags", "fata");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "fighting":
+                TAGS.classList.add("tags", "lotta");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "psychic":
+                TAGS.classList.add("tags", "psico");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "rock":
+                TAGS.classList.add("tags", "roccia");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "steel":
+                TAGS.classList.add("tags", "metallo");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "ice":
+                TAGS.classList.add("tags", "ghiaccio");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "ghost":
+                TAGS.classList.add("tags", "fantasma");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+              case "dragon":
+                TAGS.classList.add("tags", "drago");
+                TAGS.textContent = tipo.type.name;
+                CONTENITORE_TAGS.appendChild(TAGS);
+                break;
+            }
+          });
         }
       }
     }
-    
   } catch (error) {
     console.log(error);
   }
@@ -416,6 +431,7 @@ async function ricercaPoke(input) {
 
 async function tuttiPoke() {
   try {
+    // SPINNER.classList.remove("hidden");
     const TUTTI_I_POKEMON = await fetch(
       "https://pokeapi.co/api/v2/pokemon?offset=0&limit=151"
     );
@@ -542,7 +558,18 @@ async function tuttiPoke() {
         }
       });
     }
+    // SPINNER.classList.add("hidden");
   } catch (error) {
     console.log(error);
   }
+}
+
+function trovaIndex(tipo, input) {
+  let indice;
+  for (let index = 0; index < tipo.length; index++) {
+    if (tipo[index] === input) {
+      indice = index;
+    }
+  }
+  return indice;
 }

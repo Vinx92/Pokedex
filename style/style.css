@@ -43,14 +43,14 @@
 
 .arrow {
   cursor: pointer;
-  background-image: url(/asset/caret-right.svg);
+  background-image: url(../asset/caret-right.svg);
   width: 30px;
   height: 30px;
 }
 
 .arrowDown {
   cursor: pointer;
-  background-image: url(/asset/caret-right.svg);
+  background-image: url(../asset/caret-down-fill.svg);
   width: 30px;
   height: 30px;
 }

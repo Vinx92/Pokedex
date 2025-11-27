@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../asset/icona-tab.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Home Pokédex</title>
+</head>
+
+<body class="h-screen bg-red-300 select-none flex flex-col">
+    <header class="flex items-center justify-between p-2 bg-red-500 border-b-1 border-red-100 relative">
+        <div class="flex items-center">
+            <a href="../index.html">
+                <div class="flex items-center m-2 gap-2">
+                    <img src="../asset/icona-sito.png" alt="Immagine Poké Ball sito">
+                    <h1 class="font-black text-3xl fascinate-regular">Pokédex</h1>
+                </div>
+            </a>
+            <input class="bg-red-300 m-2 p-2 rounded-md w-xs focus:outline-2 focus:outline-red-100" type="search"
+                name="cerca" id="cerca" placeholder="🔍 Cerca">
+        </div>
+        <div id="box-icona-profilo"
+            class="rounded-full bg-red-300 overflow-hidden w-10 h-10 flex items-center justify-center cursor-pointer">
+            <img class="object-fill object-center" src="../asset/user.png" alt="Icona Profilo">
+        </div>
+        <div id="tab-logOut" class="absolute bg-red-300 overflow-hidden transizioneIn" style="right:60px;">
+            <ul class="flex gap-5">
+                <a href="" class="hover:bg-red-500" style="right:60px;padding: 10px 30px;">
+                    <li>Profilo</li>
+                </a>
+                <li id="log-out" class="cursor-pointer hover:bg-red-500" style="right:60px;padding: 10px 30px;">LogOut
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main class="h-full flex">
+        <aside class="border-r-1 border-red-100 w-1/6 p-3 bg-red-500">
+            <nav class="h-full">
+                <ul class="h-full flex flex-col gap-5">
+                    <a href="../pages/home.html" rel="noopener noreferrer"
+                        class="flex p-3 gap-2 hover:bg-red-300 rounded-md items-center">
+                        <img src="../asset/menu.png" alt="Icona per il cerca Pokémon">
+                        <li class="font-medium">Home</li>
+                    </a>
+                    <a href="../pages/pokemon.html" rel="noopener noreferrer"
+                        class="flex p-3 gap-2 hover:bg-red-300 rounded-md items-center">
+                        <img src="../asset/icona-cerca-pokemon.png" alt="Icona per il cerca Pokémon">
+                        <li class="font-medium">Pokémon</li>
+                    </a>
+                    <a href="../pages/squadra.html" rel="noopener noreferrer"
+                        class="flex p-3 gap-2 hover:bg-red-300 rounded-md items-center">
+                        <img src="../asset/icona-squadra.png" alt="Icona per il cerca Pokémon">
+                        <li class="font-medium">Squadra</li>
+                    </a>
+                    <a href="../pages/trova-pokemon.html" rel="noopener noreferrer"
+                        class="flex p-3 gap-2 hover:bg-red-300 rounded-md items-center">
+                        <img src="../asset/icona-trova-pokemon.png" alt="Icona per il cerca Pokémon">
+                        <li class="font-medium">Trova il tuo Pokémon</li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
+        <section class="p-3 w-5/6">
+            <h2>Pokémon</h2>
+            <h3>Registrati</h3>
+            <p>Sarà una registrazione in locale, terrà traccia solo nella memoria del browser</p>
+            <form action="get">
+                <label for="nome-utente">Scegli il tuo Username</label>
+                <input class="bg-red-500 m-2 p-2 rounded-md w-xs focus:outline-2 focus:outline-red-100" type="text"
+                    name="nome-utente" id="nome-utente">
+                <label for="password">Scegli la tua Password</label>
+                <input class="bg-red-500 m-2 p-2 rounded-md w-xs focus:outline-2 focus:outline-red-100" type="password"
+                    name="password" id="password">
+            </form>
+        </section>
+    </main>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../JS/home.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Fascinate&display=swap"
+        rel="stylesheet">
+</body>
+
+</html>

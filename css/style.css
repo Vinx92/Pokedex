@@ -1,0 +1,21 @@
+* {
+  font-family: "Bitter", serif;
+}
+
+.fascinate-regular {
+  font-family: "Fascinate", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.transizioneOut {
+  width: 254px;
+  padding: 5px;
+  transition: 0.5s ease-in-out all;
+}
+
+.transizioneIn {
+  width: 0px;
+  padding: 0px;
+  transition: 0.5s ease-in-out all;
+}

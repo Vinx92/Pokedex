@@ -1,5 +1,3 @@
-import { TIPI_POKEMON } from "./funzioniCerca.js";
-
 export function creaCard(contcard, arrayPokemon) {
   arrayPokemon.forEach((pokemon) => {
     // console.log(pokemon);

@@ -20,7 +20,9 @@ const TIPI_POKEMON = [
 ];
 
 const GENERAZIONI = [
-  {},
+  { nome: "prima", inizio: 0, fine: 151 },
+  { nome: "seconda", inizio: 151, fine: 100 },
+  { nome: "terza", inizio: 251, fine: 135 },
 ];
 
 function generaCercaTipo(contTipo, arryTipi) {
@@ -97,4 +99,8 @@ function generaCercaTipo(contTipo, arryTipi) {
   });
 }
 
-export { TIPI_POKEMON, generaCercaTipo };
+function tabGenerazioni() {
+  
+}
+
+export { TIPI_POKEMON, GENERAZIONI, generaCercaTipo };

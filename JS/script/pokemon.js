@@ -14,16 +14,16 @@ let pokemon = await pokemonGenerazione(
   GENERAZIONI[0].inizio,
   GENERAZIONI[0].fine
 );
-const TAB_GENERAZIONI = document.getElementById("tab-generazioni")
+const TAB_GENERAZIONI = document.getElementById("tab-generazioni");
 
-TAB_GENERAZIONI.addEventListener("click", async (e)=>{
-  CONT_CARD_POKEMON.innerHTML = ""
+TAB_GENERAZIONI.addEventListener("click", async (e) => {
+  CONT_CARD_POKEMON.innerHTML = "";
   pokemon = await pokemonGenerazione(
-  GENERAZIONI[1].inizio,
-  GENERAZIONI[1].fine
-);
-creaCard(CONT_CARD_POKEMON, pokemon)
-})
+    GENERAZIONI[1].inizio,
+    GENERAZIONI[1].fine
+  );
+  creaCard(CONT_CARD_POKEMON, pokemon);
+});
 
 BOX_ICONA_PROFILO.addEventListener("click", OpenTab);
 

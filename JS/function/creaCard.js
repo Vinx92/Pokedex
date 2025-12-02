@@ -1,6 +1,5 @@
 export function creaCard(contcard, arrayPokemon) {
   arrayPokemon.forEach((pokemon) => {
-    console.log(pokemon);
     fetch(pokemon.url)
       .then((response) => response.json())
       .then((data) => {

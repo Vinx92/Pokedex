@@ -22,15 +22,15 @@ generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD_TIPI);
 
 creaCard(CONT_CARD_POKEMON, pokemon, CONT_LOAD_POKE);
 
-TAB_GENERAZIONI.addEventListener("click", async (e) => {
-  CONT_CARD_POKEMON.innerHTML = "";
-  pokemon = await pokemonGenerazione(
-    GENERAZIONI[1].inizio,
-    GENERAZIONI[1].fine
-  );
-  creaCard(CONT_CARD_POKEMON, pokemon);
-  console.log(pokemon);
-});
+// TAB_GENERAZIONI.addEventListener("click", async (e) => {
+//   CONT_CARD_POKEMON.innerHTML = "";
+//   pokemon = await pokemonGenerazione(
+//     GENERAZIONI[1].inizio,
+//     GENERAZIONI[1].fine
+//   );
+//   creaCard(CONT_CARD_POKEMON, pokemon);
+//   console.log(pokemon);
+// });
 
 console.log(pokemon);
 

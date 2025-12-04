@@ -15,6 +15,12 @@ let pokemon = await pokemonGenerazione(
   GENERAZIONI[0].fine
 );
 const TAB_GENERAZIONI = document.getElementById("tab-generazioni");
+const CONT_LOAD_TIPI = document.getElementById("cont-load-tipi");
+const CONT_LOAD_POKE = document.getElementById("cont-load-poke");
+
+generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD_TIPI);
+
+creaCard(CONT_CARD_POKEMON, pokemon, CONT_LOAD_POKE);
 
 TAB_GENERAZIONI.addEventListener("click", async (e) => {
   CONT_CARD_POKEMON.innerHTML = "";
@@ -23,10 +29,9 @@ TAB_GENERAZIONI.addEventListener("click", async (e) => {
     GENERAZIONI[1].fine
   );
   creaCard(CONT_CARD_POKEMON, pokemon);
+  console.log(pokemon);
 });
 
+console.log(pokemon);
+
 BOX_ICONA_PROFILO.addEventListener("click", OpenTab);
-
-generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON);
-
-creaCard(CONT_CARD_POKEMON, pokemon);

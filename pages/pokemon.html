@@ -64,14 +64,26 @@
         </aside>
         <section class="w-5/6 flex flex-col relative">
             <div class="pt-3 px-3 sticky flex flex-col gap-2">
+                <div id="cont-load-tipi" class="bg-red-300 nascosto-caricamento flex justify-center items-center">
+                    <img src="../asset/loading-bar.png" alt="imaggine di caricamento">
+                </div>
                 <div id="cont-cerca-tipo" class="flex flex-wrap gap-2 p-1"></div>
                 <ul id="tab-generazioni" class="flex list-[upper-roman] list-inside justify-center">
-                    <li id="prima" class="rounded-t-md border-x-2 border-t-2 hover:border-red-100 border-red-100 px-[60px] py-[15px] cursor-pointer bg-red-500 hover:bg-red-500">Prima</li>
-                    <li id="seconda" class="rounded-t-md border-x-2 border-t-2 hover:border-red-100 border-red-300 px-[60px] py-[15px] cursor-pointer hover:bg-red-500">Seconda</li>
-                    <li id="terza" class="rounded-t-md border-x-2 border-t-2 hover:border-red-100 border-red-300 px-[60px] py-[15px] cursor-pointer hover:bg-red-500">Terza</li>
+                    <li id="prima"
+                        class="rounded-t-md border-x-2 border-t-2 hover:border-red-100 border-red-100 px-[60px] py-[15px] cursor-pointer bg-red-500 hover:bg-red-500">
+                        Prima</li>
+                    <li id="seconda"
+                        class="rounded-t-md border-x-2 border-t-2 hover:border-red-100 border-red-300 px-[60px] py-[15px] cursor-pointer hover:bg-red-500">
+                        Seconda</li>
+                    <li id="terza"
+                        class="rounded-t-md border-x-2 border-t-2 hover:border-red-100 border-red-300 px-[60px] py-[15px] cursor-pointer hover:bg-red-500">
+                        Terza</li>
                 </ul>
             </div>
-            <div id="cont-card-pokemon" class="border-t-1 border-red-100 p-3 grid grid-cols-6 gap-2 overflow-auto">
+            <div id="cont-card-pokemon" class="border-t-1 border-red-100 p-3 grid grid-cols-6 gap-2 overflow-auto relative h-full">
+                <div id="cont-load-poke" class="bg-red-300 nascosto-caricamento flex justify-center items-center">
+                    <img src="../asset/loading-bar.png" alt="imaggine di caricamento">
+                </div>
             </div>
         </section>
     </main>

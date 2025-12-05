@@ -1,21 +1,21 @@
 const TIPI_POKEMON = [
   { nome: "Normal", bg: "bg-stone-400" },
-  { nome: "Fire", bg: "bg-red-600" },
+  { nome: "Fire", bg: "bg-red-600 text-red-100" },
   { nome: "Fighting", bg: "bg-amber-600" },
   { nome: "Water", bg: "bg-sky-500" },
-  { nome: "Flying", bg: "bg-blue-600" },
+  { nome: "Flying", bg: "bg-blue-600 text-red-100" },
   { nome: "Grass", bg: "bg-green-600" },
-  { nome: "Poison", bg: "bg-violet-600" },
+  { nome: "Poison", bg: "bg-violet-600 text-red-100" },
   { nome: "Electric", bg: "bg-yellow-300" },
-  { nome: "Ground", bg: "bg-amber-900" },
-  { nome: "Psychic", bg: "bg-fuchsia-600" },
-  { nome: "Rock", bg: "bg-stone-500" },
+  { nome: "Ground", bg: "bg-amber-900 text-red-100" },
+  { nome: "Psychic", bg: "bg-fuchsia-600 text-red-100" },
+  { nome: "Rock", bg: "bg-stone-500 text-red-100" },
   { nome: "Ice", bg: "bg-cyan-300" },
-  { nome: "Bug", bg: "bg-emerald-700" },
-  { nome: "Dragon", bg: "bg-indigo-600" },
-  { nome: "Ghost", bg: "bg-purple-800" },
+  { nome: "Bug", bg: "bg-emerald-700 text-red-100" },
+  { nome: "Dragon", bg: "bg-indigo-600 text-red-100" },
+  { nome: "Ghost", bg: "bg-purple-800 text-red-100" },
   { nome: "Dark", bg: "bg-zinc-800 text-red-100" },
-  { nome: "Steel", bg: "bg-slate-500" },
+  { nome: "Steel", bg: "bg-slate-500 text-red-100" },
   { nome: "Fairy", bg: "bg-fuchsia-400" },
 ];
 
@@ -33,17 +33,20 @@ function generaCercaTipo(contTipo, arryTipi, imgLoading) {
     const LABEL = document.createElement("label");
     LABEL.setAttribute("for", tipo.nome.toLocaleLowerCase());
     LABEL.textContent = tipo.nome;
+    LABEL.id = `label-tipo-${tipo.nome.toLocaleLowerCase()}`;
     stileEtichettaTipo(tipo, LABEL);
+    LABEL.classList.add("cursor-pointer");
     const CHECK_BOX = document.createElement("input");
     CHECK_BOX.type = "checkbox";
     CHECK_BOX.name = tipo.nome.toLocaleLowerCase();
     CHECK_BOX.id = tipo.nome.toLocaleLowerCase();
+    CHECK_BOX.classList.add("hidden");
     contTipo.appendChild(DIV);
     DIV.appendChild(LABEL);
     DIV.appendChild(CHECK_BOX);
   });
-  imgLoading.classList.remove("nascosto-caricamento")
-  imgLoading.classList.add("hidden")
+  imgLoading.classList.remove("nascosto-caricamento");
+  imgLoading.classList.add("hidden");
 }
 
 function stileEtichettaTipo(tipo, elementoHtml) {
@@ -105,4 +108,24 @@ function stileEtichettaTipo(tipo, elementoHtml) {
   }
 }
 
-export { TIPI_POKEMON, GENERAZIONI, generaCercaTipo, stileEtichettaTipo };
+function flagCercaTipi(inputLabel) {
+  TIPI_POKEMON.forEach((tipo) => {
+    if (
+      inputLabel.id.toLocaleUpperCase().includes(tipo.nome.toLocaleUpperCase())
+    ) {
+      if (inputLabel.textContent == `${tipo.nome} ✓`) {
+        inputLabel.textContent = `${tipo.nome} `;
+      } else {
+        inputLabel.textContent = `${tipo.nome} ✓`;
+      }
+    }
+  });
+}
+
+export {
+  TIPI_POKEMON,
+  GENERAZIONI,
+  generaCercaTipo,
+  stileEtichettaTipo,
+  flagCercaTipi,
+};

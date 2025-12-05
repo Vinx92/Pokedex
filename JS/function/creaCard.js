@@ -1,6 +1,6 @@
 import { TIPI_POKEMON, stileEtichettaTipo } from "./funzioniCerca.js";
 
-export function creaCard(contcard, arrayPokemon, imgLoading) {
+export function creaCard(contcard, arrayPokemon) {
   arrayPokemon.forEach((pokemon) => {
     const DIV = document.createElement("div");
     const IMG = document.createElement("img");
@@ -24,8 +24,6 @@ export function creaCard(contcard, arrayPokemon, imgLoading) {
       CONT_TIPI.appendChild(SPAN);
     });
     DIV.appendChild(CONT_TIPI);
-    imgLoading.classList.remove("nascosto-caricamento");
-    imgLoading.classList.add("hidden");
   });
 }
 

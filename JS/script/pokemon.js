@@ -18,6 +18,9 @@ let pokemon = await pokemonGenerazione(
 const TAB_GENERAZIONI = document.getElementById("tab-generazioni");
 const CONT_LOAD = document.getElementById("cont-load");
 const GO_TOP = document.getElementById("go-top");
+const PRIMA = document.getElementById("prima");
+const SECONDA = document.getElementById("seconda");
+const TERZA = document.getElementById("terza");
 
 generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD);
 
@@ -38,19 +41,46 @@ TAB_GENERAZIONI.addEventListener("click", async (e) => {
         GENERAZIONI[0].inizio,
         GENERAZIONI[0].fine
       );
+      PRIMA.classList.toggle("border-red-100");
+      PRIMA.classList.toggle("border-red-300");
+      PRIMA.classList.toggle("bg-red-500");
+      SECONDA.classList.remove("border-red-100");
+      SECONDA.classList.add("border-red-300");
+      SECONDA.classList.remove("bg-red-500");
+      TERZA.classList.remove("border-red-100");
+      TERZA.classList.add("border-red-300");
+      TERZA.classList.remove("bg-red-500");
       break;
     case "seconda":
       pokemon = await pokemonGenerazione(
         GENERAZIONI[1].inizio,
         GENERAZIONI[1].fine
       );
+      PRIMA.classList.remove("border-red-100");
+      PRIMA.classList.add("border-red-300");
+      PRIMA.classList.remove("bg-red-500");
+      SECONDA.classList.toggle("border-red-100");
+      SECONDA.classList.toggle("border-red-300");
+      SECONDA.classList.toggle("bg-red-500");
+      TERZA.classList.remove("border-red-100");
+      TERZA.classList.add("border-red-300");
+      TERZA.classList.remove("bg-red-500");
       break;
 
-    default:
+    case "terza":
       pokemon = await pokemonGenerazione(
         GENERAZIONI[2].inizio,
         GENERAZIONI[2].fine
       );
+      PRIMA.classList.remove("border-red-100");
+      PRIMA.classList.add("border-red-300");
+      PRIMA.classList.remove("bg-red-500");
+      SECONDA.classList.remove("border-red-100");
+      SECONDA.classList.add("border-red-300");
+      SECONDA.classList.remove("bg-red-500");
+      TERZA.classList.toggle("border-red-100");
+      TERZA.classList.toggle("border-red-300");
+      TERZA.classList.toggle("bg-red-500");
       break;
   }
   CONT_CARD_POKEMON.innerHTML = "";
@@ -69,7 +99,7 @@ CONT_CARD_POKEMON.addEventListener("scroll", (e) => {
 });
 
 GO_TOP.addEventListener("click", () => {
-  CONT_CARD_POKEMON.scrollTop;
+  CONT_CARD_POKEMON.scrollTop = 0 + "px";
 });
 
 console.log(pokemon);

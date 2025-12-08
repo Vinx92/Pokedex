@@ -122,10 +122,70 @@ function flagCercaTipi(inputLabel) {
   });
 }
 
+async function attivaTabGenerazioni(
+  pokemonGenerazione,
+  evento,
+  tabPrimaGen,
+  tabSecondaGen,
+  tabTerzaGen,
+  arrPokemon
+) {
+  switch (evento.target.id) {
+    case "prima":
+      tabPrimaGen.classList.toggle("border-red-100");
+      tabPrimaGen.classList.toggle("border-red-300");
+      tabPrimaGen.classList.toggle("bg-red-500");
+      tabSecondaGen.classList.remove("border-red-100");
+      tabSecondaGen.classList.add("border-red-300");
+      tabSecondaGen.classList.remove("bg-red-500");
+      tabTerzaGen.classList.remove("border-red-100");
+      tabTerzaGen.classList.add("border-red-300");
+      tabTerzaGen.classList.remove("bg-red-500");
+      arrPokemon = await pokemonGenerazione(
+        GENERAZIONI[0].inizio,
+        GENERAZIONI[0].fine
+      );
+      break;
+    case "seconda":
+      tabPrimaGen.classList.remove("border-red-100");
+      tabPrimaGen.classList.add("border-red-300");
+      tabPrimaGen.classList.remove("bg-red-500");
+      tabSecondaGen.classList.toggle("border-red-100");
+      tabSecondaGen.classList.toggle("border-red-300");
+      tabSecondaGen.classList.toggle("bg-red-500");
+      tabTerzaGen.classList.remove("border-red-100");
+      tabTerzaGen.classList.add("border-red-300");
+      tabTerzaGen.classList.remove("bg-red-500");
+      arrPokemon = await pokemonGenerazione(
+        GENERAZIONI[1].inizio,
+        GENERAZIONI[1].fine
+      );
+      break;
+
+    case "terza":
+      tabPrimaGen.classList.remove("border-red-100");
+      tabPrimaGen.classList.add("border-red-300");
+      tabPrimaGen.classList.remove("bg-red-500");
+      tabSecondaGen.classList.remove("border-red-100");
+      tabSecondaGen.classList.add("border-red-300");
+      tabSecondaGen.classList.remove("bg-red-500");
+      tabTerzaGen.classList.toggle("border-red-100");
+      tabTerzaGen.classList.toggle("border-red-300");
+      tabTerzaGen.classList.toggle("bg-red-500");
+      arrPokemon = await pokemonGenerazione(
+        GENERAZIONI[2].inizio,
+        GENERAZIONI[2].fine
+      );
+      break;
+  }
+  return arrPokemon
+}
+
 export {
   TIPI_POKEMON,
   GENERAZIONI,
   generaCercaTipo,
   stileEtichettaTipo,
   flagCercaTipi,
+  attivaTabGenerazioni,
 };

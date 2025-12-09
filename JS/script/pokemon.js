@@ -32,6 +32,12 @@ CONT_CERCA_TIPO.addEventListener("click", (e) => {
   }
 });
 
+CONT_CARD_POKEMON.addEventListener("click", (e) => {
+  localStorage.setItem("idPokemonCliccato", e.target.closest("div").id);
+  console.log(e.target.closest("div").id);
+  window.location = "../pages/cerca.html";
+});
+
 TAB_GENERAZIONI.addEventListener("click", async (e) => {
   CONT_LOAD.classList.add("nascosto-caricamento");
   CONT_LOAD.classList.remove("hidden");
@@ -101,7 +107,5 @@ CONT_CARD_POKEMON.addEventListener("scroll", (e) => {
 GO_TOP.addEventListener("click", () => {
   CONT_CARD_POKEMON.scrollTop = 0 + "px";
 });
-
-console.log(pokemon);
 
 BOX_ICONA_PROFILO.addEventListener("click", OpenTab);

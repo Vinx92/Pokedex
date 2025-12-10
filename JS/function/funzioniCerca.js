@@ -189,6 +189,22 @@ function salvaSingoloPokemonLocal(pokemon, event) {
   });
 }
 
+function creaArrayTipiSelezionati(event, arrayDaRiempire) {
+  if (event.target.closest("span").textContent.includes("✓")) {
+    arrayDaRiempire.push(event.target.closest("span").id);
+    // console.log(arrayDaRiempire);
+  } else {
+    let nuovaArrTipiSel = [];
+    arrayDaRiempire.forEach((tipo) => {
+      if (tipo != event.target.closest("span").id) {
+        nuovaArrTipiSel.push(tipo);
+      }
+    });
+    arrayDaRiempire = nuovaArrTipiSel;
+    // console.log(arrayDaRiempire);
+  }
+}
+
 export {
   TIPI_POKEMON,
   GENERAZIONI,
@@ -197,4 +213,5 @@ export {
   flagCercaTipi,
   attivaTabGenerazioni,
   salvaSingoloPokemonLocal,
+  creaArrayTipiSelezionati,
 };

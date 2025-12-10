@@ -7,6 +7,7 @@ import {
   GENERAZIONI,
   flagCercaTipi,
   salvaSingoloPokemonLocal,
+  creaArrayTipiSelezionati,
 } from "../function/funzioniCerca.js";
 
 const BOX_ICONA_PROFILO = document.getElementById("box-icona-profilo");
@@ -36,10 +37,21 @@ CONT_CERCA_TIPO.addEventListener("click", (e) => {
 });
 
 CONT_CERCA_TIPO.addEventListener("click", (e) => {
-  if (e.target.closest("span").textContent.includes("✓")) {
-    arrTipiSelezionati.push(e.target.closest("span").id);
-    console.log(arrTipiSelezionati);
-  } else {}
+  creaArrayTipiSelezionati(e, arrTipiSelezionati);
+  console.log(arrTipiSelezionati)
+  // if (e.target.closest("span").textContent.includes("✓")) {
+  //   arrTipiSelezionati.push(e.target.closest("span").id);
+  //   console.log(arrTipiSelezionati);
+  // } else {
+  //   let nuovaArrTipiSel = [];
+  //   arrTipiSelezionati.forEach((tipo) => {
+  //     if (tipo != e.target.closest("span").id) {
+  //       nuovaArrTipiSel.push(tipo);
+  //     }
+  //   });
+  //   arrTipiSelezionati = nuovaArrTipiSel;
+  //   console.log(arrTipiSelezionati);
+  // }
 });
 
 CONT_CARD_POKEMON.addEventListener("click", (e) => {

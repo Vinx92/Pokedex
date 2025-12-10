@@ -30,20 +30,20 @@ function generaCercaTipo(contTipo, arryTipi, imgLoading) {
     const DIV = document.createElement("div");
     DIV.id = `cont-tipo-${tipo.nome.toLocaleLowerCase()}`;
     DIV.classList = "flex items-center gap-2";
-    const LABEL = document.createElement("label");
-    LABEL.setAttribute("for", tipo.nome.toLocaleLowerCase());
-    LABEL.textContent = tipo.nome;
-    LABEL.id = `label-tipo-${tipo.nome.toLocaleLowerCase()}`;
-    stileEtichettaTipo(tipo, LABEL);
-    LABEL.classList.add("cursor-pointer");
-    const CHECK_BOX = document.createElement("input");
-    CHECK_BOX.type = "checkbox";
-    CHECK_BOX.name = tipo.nome.toLocaleLowerCase();
-    CHECK_BOX.id = tipo.nome.toLocaleLowerCase();
-    CHECK_BOX.classList.add("hidden");
+    const SPAN = document.createElement("span");
+    // LABEL.setAttribute("for", tipo.nome.toLocaleLowerCase());
+    SPAN.textContent = tipo.nome;
+    SPAN.id = tipo.nome.toLocaleLowerCase();
+    stileEtichettaTipo(tipo, SPAN);
+    SPAN.classList.add("cursor-pointer");
+    // const CHECK_BOX = document.createElement("input");
+    // CHECK_BOX.type = "checkbox";
+    // CHECK_BOX.name = tipo.nome.toLocaleLowerCase();
+    // CHECK_BOX.id = tipo.nome.toLocaleLowerCase();
+    // CHECK_BOX.classList.add("hidden");
     contTipo.appendChild(DIV);
-    DIV.appendChild(LABEL);
-    DIV.appendChild(CHECK_BOX);
+    DIV.appendChild(SPAN);
+    // DIV.appendChild(CHECK_BOX);
   });
   imgLoading.classList.remove("nascosto-caricamento");
   imgLoading.classList.add("hidden");
@@ -178,7 +178,15 @@ async function attivaTabGenerazioni(
       );
       break;
   }
-  return arrPokemon
+  return arrPokemon;
+}
+
+function salvaSingoloPokemonLocal(pokemon, event) {
+  pokemon.forEach((singPok) => {
+    if (singPok.id == event.target.closest("div").id) {
+      localStorage.setItem("pokemonCliccato", JSON.stringify(singPok));
+    }
+  });
 }
 
 export {
@@ -188,4 +196,5 @@ export {
   stileEtichettaTipo,
   flagCercaTipi,
   attivaTabGenerazioni,
+  salvaSingoloPokemonLocal,
 };

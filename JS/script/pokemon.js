@@ -6,6 +6,7 @@ import {
   TIPI_POKEMON,
   GENERAZIONI,
   flagCercaTipi,
+  salvaSingoloPokemonLocal,
 } from "../function/funzioniCerca.js";
 
 const BOX_ICONA_PROFILO = document.getElementById("box-icona-profilo");
@@ -15,27 +16,34 @@ let pokemon = await pokemonGenerazione(
   GENERAZIONI[0].inizio,
   GENERAZIONI[0].fine
 );
+let arrTipiSelezionati = [];
 const TAB_GENERAZIONI = document.getElementById("tab-generazioni");
 const CONT_LOAD = document.getElementById("cont-load");
 const GO_TOP = document.getElementById("go-top");
 const PRIMA = document.getElementById("prima");
 const SECONDA = document.getElementById("seconda");
 const TERZA = document.getElementById("terza");
+const CERCA_POKEMON = document.getElementById("cerca-pokemon");
 
 generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD);
 
 creaCard(CONT_CARD_POKEMON, pokemon);
 
 CONT_CERCA_TIPO.addEventListener("click", (e) => {
-  if (e.target.tagName == "LABEL") {
+  if (e.target.tagName == "SPAN") {
     flagCercaTipi(e.target);
   }
 });
 
+CONT_CERCA_TIPO.addEventListener("click", (e) => {
+  if (e.target.closest("span").textContent.includes("✓")) {
+    arrTipiSelezionati.push(e.target.closest("span").id);
+    console.log(arrTipiSelezionati);
+  } else {}
+});
+
 CONT_CARD_POKEMON.addEventListener("click", (e) => {
-  localStorage.setItem("idPokemonCliccato", e.target.closest("div").id);
-  console.log(e.target.closest("div").id);
-  window.location = "../pages/cerca.html";
+  salvaSingoloPokemonLocal(pokemon, e);
 });
 
 TAB_GENERAZIONI.addEventListener("click", async (e) => {
@@ -106,6 +114,18 @@ CONT_CARD_POKEMON.addEventListener("scroll", (e) => {
 
 GO_TOP.addEventListener("click", () => {
   CONT_CARD_POKEMON.scrollTop = 0 + "px";
+});
+
+CERCA_POKEMON.addEventListener("input", (e) => {
+  CONT_LOAD.classList.add("nascosto-caricamento");
+  CONT_LOAD.classList.remove("hidden");
+  CONT_CARD_POKEMON.innerHTML = "";
+  let arrayPokemonCercati = pokemon.filter((singPoke) =>
+    singPoke.name.includes(e.target.value)
+  );
+  creaCard(CONT_CARD_POKEMON, arrayPokemonCercati);
+  CONT_LOAD.classList.remove("nascosto-caricamento");
+  CONT_LOAD.classList.add("hidden");
 });
 
 BOX_ICONA_PROFILO.addEventListener("click", OpenTab);

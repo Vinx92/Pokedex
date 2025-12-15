@@ -30,20 +30,18 @@ function generaCercaTipo(contTipo, arryTipi, imgLoading) {
     const DIV = document.createElement("div");
     DIV.id = `cont-tipo-${tipo.nome.toLocaleLowerCase()}`;
     DIV.classList = "flex items-center gap-2";
-    const SPAN = document.createElement("span");
-    // LABEL.setAttribute("for", tipo.nome.toLocaleLowerCase());
-    SPAN.textContent = tipo.nome;
-    SPAN.id = tipo.nome.toLocaleLowerCase();
-    stileEtichettaTipo(tipo, SPAN);
-    SPAN.classList.add("cursor-pointer");
-    // const CHECK_BOX = document.createElement("input");
-    // CHECK_BOX.type = "checkbox";
-    // CHECK_BOX.name = tipo.nome.toLocaleLowerCase();
-    // CHECK_BOX.id = tipo.nome.toLocaleLowerCase();
-    // CHECK_BOX.classList.add("hidden");
     contTipo.appendChild(DIV);
-    DIV.appendChild(SPAN);
-    // DIV.appendChild(CHECK_BOX);
+    const LABEL = document.createElement("label");
+    LABEL.setAttribute("for", tipo.nome.toLocaleLowerCase());
+    LABEL.textContent = tipo.nome;
+    stileEtichettaTipo(tipo, LABEL);
+    DIV.appendChild(LABEL);
+    const CHECK_BOX = document.createElement("input");
+    CHECK_BOX.type = "checkbox";
+    CHECK_BOX.name = tipo.nome.toLocaleLowerCase();
+    CHECK_BOX.id = tipo.nome.toLocaleLowerCase();
+    CHECK_BOX.classList.add("hidden");
+    DIV.appendChild(CHECK_BOX);
   });
   imgLoading.classList.remove("nascosto-caricamento");
   imgLoading.classList.add("hidden");
@@ -52,75 +50,75 @@ function generaCercaTipo(contTipo, arryTipi, imgLoading) {
 function stileEtichettaTipo(tipo, elementoHtml) {
   switch (tipo.nome) {
     case "Normal":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Fire":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Fighting":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Water":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Flying":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Grass":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Poison":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Electric":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Ground":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Psychic":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Rock":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} `;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
       break;
     case "Ice":
-      elementoHtml.classList = ` px-5 py-1 rounded-md ${tipo.bg} `;
+      elementoHtml.classList = ` px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
       break;
     case "Bug":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} `;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
       break;
     case "Dragon":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Ghost":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} `;
+      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
       break;
     case "Dark":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Steel":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
     case "Fairy":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg}`;
+      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
       break;
   }
 }
 
-function flagCercaTipi(inputLabel) {
-  TIPI_POKEMON.forEach((tipo) => {
-    if (
-      inputLabel.id.toLocaleUpperCase().includes(tipo.nome.toLocaleUpperCase())
-    ) {
-      if (inputLabel.textContent == `${tipo.nome} ✓`) {
-        inputLabel.textContent = `${tipo.nome} `;
-      } else {
-        inputLabel.textContent = `${tipo.nome} ✓`;
-      }
-    }
-  });
-}
+// function flagCercaTipi(inputLabel) {
+//   TIPI_POKEMON.forEach((tipo) => {
+//     if (
+//       inputLabel.id.toLocaleUpperCase().includes(tipo.nome.toLocaleUpperCase())
+//     ) {
+//       if (inputLabel.textContent == `${tipo.nome} ✓`) {
+//         inputLabel.textContent = `${tipo.nome} `;
+//       } else {
+//         inputLabel.textContent = `${tipo.nome} ✓`;
+//       }
+//     }
+//   });
+// }
 
 async function attivaTabGenerazioni(
   pokemonGenerazione,
@@ -189,7 +187,8 @@ function salvaSingoloPokemonLocal(pokemon, event) {
   });
 }
 
-function creaArrayTipiSelezionati(event, arrayDaRiempire) {
+function creaArrayTipiSelezionati(event) {
+  let arrayDaRiempire = []
   if (event.target.closest("span").textContent.includes("✓")) {
     arrayDaRiempire.push(event.target.closest("span").id);
     // console.log(arrayDaRiempire);
@@ -200,9 +199,10 @@ function creaArrayTipiSelezionati(event, arrayDaRiempire) {
         nuovaArrTipiSel.push(tipo);
       }
     });
-    arrayDaRiempire = nuovaArrTipiSel;
+    return arrayDaRiempire
     // console.log(arrayDaRiempire);
   }
+  return arrayDaRiempire
 }
 
 export {
@@ -210,7 +210,7 @@ export {
   GENERAZIONI,
   generaCercaTipo,
   stileEtichettaTipo,
-  flagCercaTipi,
+  // flagCercaTipi,
   attivaTabGenerazioni,
   salvaSingoloPokemonLocal,
   creaArrayTipiSelezionati,

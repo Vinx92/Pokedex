@@ -5,7 +5,7 @@ import {
   generaCercaTipo,
   TIPI_POKEMON,
   GENERAZIONI,
-  flagCercaTipi,
+  // flagCercaTipi,
   salvaSingoloPokemonLocal,
   creaArrayTipiSelezionati,
 } from "../function/funzioniCerca.js";
@@ -30,15 +30,17 @@ generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD);
 
 creaCard(CONT_CARD_POKEMON, pokemon);
 
-CONT_CERCA_TIPO.addEventListener("click", (e) => {
-  if (e.target.tagName == "SPAN") {
-    flagCercaTipi(e.target);
-  }
-});
+// CONT_CERCA_TIPO.addEventListener("click", (e) => {
+//   if (e.target.tagName == "SPAN") {
+//     flagCercaTipi(e.target);
+//   }
+// });
 
 CONT_CERCA_TIPO.addEventListener("click", (e) => {
-  creaArrayTipiSelezionati(e, arrTipiSelezionati);
+  console.log(e.target.closest("input").id)
   console.log(arrTipiSelezionati)
+  // arrTipiSelezionati = creaArrayTipiSelezionati(e);
+  // console.log(arrTipiSelezionati)
   // if (e.target.closest("span").textContent.includes("✓")) {
   //   arrTipiSelezionati.push(e.target.closest("span").id);
   //   console.log(arrTipiSelezionati);

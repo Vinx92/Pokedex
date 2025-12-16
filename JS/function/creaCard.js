@@ -1,4 +1,4 @@
-import { TIPI_POKEMON, stileEtichettaTipo } from "./funzioniCerca.js";
+import { TIPI_POKEMON, stileEtichettaTipoStatica } from "./funzioniCerca.js";
 
 export function creaCard(contcard, arrayPokemon) {
   arrayPokemon.forEach((pokemon) => {
@@ -27,17 +27,13 @@ export function creaCard(contcard, arrayPokemon) {
       CONT_TIPI.classList = "flex gap-1";
       SPAN.textContent = tipo.type.name.toLocaleUpperCase();
       SPAN.title = tipo.type.name.toLocaleLowerCase();
-      etichettaTipo(TIPI_POKEMON, tipo.type.name, SPAN);
+      etichettaTipo(tipo.type.name, SPAN);
       CONT_TIPI.appendChild(SPAN);
     });
     DIV.appendChild(CONT_TIPI);
   });
 }
 
-function etichettaTipo(arryTipi, tipoPokemon, elementoHtml) {
-  arryTipi.forEach((tipo) => {
-    if (tipo.nome.toLocaleLowerCase() == tipoPokemon) {
-      stileEtichettaTipo(tipo, elementoHtml);
-    }
-  });
+function etichettaTipo(tipo, elementoHtml) {
+      stileEtichettaTipoStatica(tipo, elementoHtml);
 }

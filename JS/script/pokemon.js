@@ -5,9 +5,9 @@ import {
   generaCercaTipo,
   TIPI_POKEMON,
   GENERAZIONI,
-  // flagCercaTipi,
   salvaSingoloPokemonLocal,
   creaArrayTipiSelezionati,
+  stileEtichettaTipoDinamica,
 } from "../function/funzioniCerca.js";
 
 const BOX_ICONA_PROFILO = document.getElementById("box-icona-profilo");
@@ -30,30 +30,20 @@ generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD);
 
 creaCard(CONT_CARD_POKEMON, pokemon);
 
-// CONT_CERCA_TIPO.addEventListener("click", (e) => {
-//   if (e.target.tagName == "SPAN") {
-//     flagCercaTipi(e.target);
-//   }
-// });
-
 CONT_CERCA_TIPO.addEventListener("click", (e) => {
-  console.log(e.target.closest("input").id)
-  console.log(arrTipiSelezionati)
-  // arrTipiSelezionati = creaArrayTipiSelezionati(e);
-  // console.log(arrTipiSelezionati)
-  // if (e.target.closest("span").textContent.includes("✓")) {
-  //   arrTipiSelezionati.push(e.target.closest("span").id);
-  //   console.log(arrTipiSelezionati);
-  // } else {
-  //   let nuovaArrTipiSel = [];
-  //   arrTipiSelezionati.forEach((tipo) => {
-  //     if (tipo != e.target.closest("span").id) {
-  //       nuovaArrTipiSel.push(tipo);
-  //     }
-  //   });
-  //   arrTipiSelezionati = nuovaArrTipiSel;
-  //   console.log(arrTipiSelezionati);
-  // }
+  if (e.target.tagName == "LABEL") {
+    stileEtichettaTipoDinamica(e.target.textContent, e.target);
+  }
+  if (e.target.tagName == "INPUT") {
+    if(e.target.checked){
+      arrTipiSelezionati.push(e.target.id)
+      CONT_CARD_POKEMON
+    }else{
+      let indiceDaCancellare = arrTipiSelezionati.findIndex(tipo => tipo.toLocaleLowerCase() == e.target.id.toLocaleLowerCase())
+      arrTipiSelezionati.splice(indiceDaCancellare, 1)
+    }
+    console.log(arrTipiSelezionati)
+  }
 });
 
 CONT_CARD_POKEMON.addEventListener("click", (e) => {

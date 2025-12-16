@@ -14,7 +14,7 @@ const TIPI_POKEMON = [
   { nome: "Bug", bg: "bg-emerald-700" },
   { nome: "Dragon", bg: "bg-indigo-600" },
   { nome: "Ghost", bg: "bg-purple-800" },
-  { nome: "Dark", bg: "bg-zinc-800 text-red-100" },
+  { nome: "Dark", bg: "bg-zinc-800", text: "text-red-100" },
   { nome: "Steel", bg: "bg-slate-500" },
   { nome: "Fairy", bg: "bg-fuchsia-400" },
 ];
@@ -34,7 +34,7 @@ function generaCercaTipo(contTipo, arryTipi, imgLoading) {
     const LABEL = document.createElement("label");
     LABEL.setAttribute("for", tipo.nome.toLocaleLowerCase());
     LABEL.textContent = tipo.nome;
-    stileEtichettaTipo(tipo, LABEL);
+    LABEL.classList = `px-5 py-1 rounded-md cursor-pointer w-full text-center font-bold`;
     DIV.appendChild(LABEL);
     const CHECK_BOX = document.createElement("input");
     CHECK_BOX.type = "checkbox";
@@ -47,78 +47,134 @@ function generaCercaTipo(contTipo, arryTipi, imgLoading) {
   imgLoading.classList.add("hidden");
 }
 
-function stileEtichettaTipo(tipo, elementoHtml) {
-  switch (tipo.nome) {
-    case "Normal":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Fire":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Fighting":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Water":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Flying":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Grass":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Poison":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Electric":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Ground":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Psychic":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Rock":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
-      break;
-    case "Ice":
-      elementoHtml.classList = ` px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
-      break;
-    case "Bug":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
-      break;
-    case "Dragon":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Ghost":
-      elementoHtml.classList = `px-5 py-1 rounded-md ${tipo.bg} cursor-pointer w-full text-center `;
-      break;
-    case "Dark":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Steel":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-    case "Fairy":
-      elementoHtml.classList = `px-5 py-1 rounded-md  ${tipo.bg} cursor-pointer w-full text-center`;
-      break;
-  }
+function stileEtichettaTipoDinamica(tipoEsterno, elementoHtml) {
+  TIPI_POKEMON.forEach((tipo) => {
+    if (tipoEsterno === tipo.nome)
+      switch (tipoEsterno) {
+        case "Normal":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Fire":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Fighting":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Water":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Flying":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Grass":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Poison":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Electric":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Ground":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Psychic":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Rock":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Ice":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Bug":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Dragon":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Ghost":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Dark":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          elementoHtml.classList.toggle(`${tipo.text}`);
+          break;
+        case "Steel":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+        case "Fairy":
+          elementoHtml.classList.toggle(`${tipo.bg}`);
+          break;
+      }
+  });
 }
 
-// function flagCercaTipi(inputLabel) {
-//   TIPI_POKEMON.forEach((tipo) => {
-//     if (
-//       inputLabel.id.toLocaleUpperCase().includes(tipo.nome.toLocaleUpperCase())
-//     ) {
-//       if (inputLabel.textContent == `${tipo.nome} ✓`) {
-//         inputLabel.textContent = `${tipo.nome} `;
-//       } else {
-//         inputLabel.textContent = `${tipo.nome} ✓`;
-//       }
-//     }
-//   });
-// }
+function stileEtichettaTipoStatica(tipoEsterno, elementoHtml) {
+  TIPI_POKEMON.forEach((tipo) => {
+    let letteraMaiuscola = tipoEsterno[0].toLocaleUpperCase()
+    let stringaSenzaIniziale = tipoEsterno.slice(1, tipoEsterno.length)
+    let parolaPerSwitch = letteraMaiuscola + stringaSenzaIniziale
+    console.log(parolaPerSwitch)
+    if (tipoEsterno.toLocaleLowerCase() === tipo.nome.toLocaleLowerCase())
+      switch (parolaPerSwitch) {
+        case "Normal":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Fire":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Fighting":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Water":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Flying":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Grass":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Poison":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Electric":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Ground":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Psychic":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Rock":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Ice":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Bug":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Dragon":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Ghost":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Dark":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} ${tipo.text}flex gap-1`;
+          break;
+        case "Steel":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+        case "Fairy":
+          elementoHtml.classList = `px-5 py-1 rounded-md text-center ${tipo.bg} flex gap-1`;
+          break;
+      }
+  });
+}
 
 async function attivaTabGenerazioni(
   pokemonGenerazione,
@@ -188,7 +244,7 @@ function salvaSingoloPokemonLocal(pokemon, event) {
 }
 
 function creaArrayTipiSelezionati(event) {
-  let arrayDaRiempire = []
+  let arrayDaRiempire = [];
   if (event.target.closest("span").textContent.includes("✓")) {
     arrayDaRiempire.push(event.target.closest("span").id);
     // console.log(arrayDaRiempire);
@@ -199,18 +255,18 @@ function creaArrayTipiSelezionati(event) {
         nuovaArrTipiSel.push(tipo);
       }
     });
-    return arrayDaRiempire
+    return arrayDaRiempire;
     // console.log(arrayDaRiempire);
   }
-  return arrayDaRiempire
+  return arrayDaRiempire;
 }
 
 export {
   TIPI_POKEMON,
   GENERAZIONI,
   generaCercaTipo,
-  stileEtichettaTipo,
-  // flagCercaTipi,
+  stileEtichettaTipoDinamica,
+  stileEtichettaTipoStatica,
   attivaTabGenerazioni,
   salvaSingoloPokemonLocal,
   creaArrayTipiSelezionati,

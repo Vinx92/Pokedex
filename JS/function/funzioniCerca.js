@@ -115,7 +115,6 @@ function stileEtichettaTipoStatica(tipoEsterno, elementoHtml) {
     let letteraMaiuscola = tipoEsterno[0].toLocaleUpperCase()
     let stringaSenzaIniziale = tipoEsterno.slice(1, tipoEsterno.length)
     let parolaPerSwitch = letteraMaiuscola + stringaSenzaIniziale
-    console.log(parolaPerSwitch)
     if (tipoEsterno.toLocaleLowerCase() === tipo.nome.toLocaleLowerCase())
       switch (parolaPerSwitch) {
         case "Normal":

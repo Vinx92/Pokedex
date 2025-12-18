@@ -18,6 +18,7 @@ let pokemon = await pokemonGenerazione(
   GENERAZIONI[0].fine
 );
 let arrTipiSelezionati = [];
+let arrPokemonPerTipo = new Set([]);
 const TAB_GENERAZIONI = document.getElementById("tab-generazioni");
 const CONT_LOAD = document.getElementById("cont-load");
 const GO_TOP = document.getElementById("go-top");
@@ -35,14 +36,27 @@ CONT_CERCA_TIPO.addEventListener("click", (e) => {
     stileEtichettaTipoDinamica(e.target.textContent, e.target);
   }
   if (e.target.tagName == "INPUT") {
-    if(e.target.checked){
-      arrTipiSelezionati.push(e.target.id)
-      CONT_CARD_POKEMON
-    }else{
-      let indiceDaCancellare = arrTipiSelezionati.findIndex(tipo => tipo.toLocaleLowerCase() == e.target.id.toLocaleLowerCase())
-      arrTipiSelezionati.splice(indiceDaCancellare, 1)
+    if (e.target.checked) {
+      arrTipiSelezionati.push(e.target.id);
+    } else {
+      let indiceDaCancellare = arrTipiSelezionati.findIndex(
+        (tipo) => tipo.toLocaleLowerCase() == e.target.id.toLocaleLowerCase()
+      );
+      arrTipiSelezionati.splice(indiceDaCancellare, 1);
     }
-    console.log(arrTipiSelezionati)
+    console.log(arrTipiSelezionati);
+    arrPokemonPerTipo.clear();
+    console.log(arrPokemonPerTipo)
+    pokemon.forEach((singPoke) => {
+      singPoke.types.forEach((singPokeTipo) => {
+        arrTipiSelezionati.forEach((tipo) => {
+          if (tipo == singPokeTipo.type.name) {
+            arrPokemonPerTipo.add(singPoke);
+          }
+        });
+      });
+    });
+    console.log(arrPokemonPerTipo);
   }
 });
 

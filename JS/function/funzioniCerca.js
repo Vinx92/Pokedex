@@ -112,9 +112,9 @@ function stileEtichettaTipoDinamica(tipoEsterno, elementoHtml) {
 
 function stileEtichettaTipoStatica(tipoEsterno, elementoHtml) {
   TIPI_POKEMON.forEach((tipo) => {
-    let letteraMaiuscola = tipoEsterno[0].toLocaleUpperCase()
-    let stringaSenzaIniziale = tipoEsterno.slice(1, tipoEsterno.length)
-    let parolaPerSwitch = letteraMaiuscola + stringaSenzaIniziale
+    let letteraMaiuscola = tipoEsterno[0].toLocaleUpperCase();
+    let stringaSenzaIniziale = tipoEsterno.slice(1, tipoEsterno.length);
+    let parolaPerSwitch = letteraMaiuscola + stringaSenzaIniziale;
     if (tipoEsterno.toLocaleLowerCase() === tipo.nome.toLocaleLowerCase())
       switch (parolaPerSwitch) {
         case "Normal":
@@ -242,24 +242,6 @@ function salvaSingoloPokemonLocal(pokemon, event) {
   });
 }
 
-function creaArrayTipiSelezionati(event) {
-  let arrayDaRiempire = [];
-  if (event.target.closest("span").textContent.includes("✓")) {
-    arrayDaRiempire.push(event.target.closest("span").id);
-    // console.log(arrayDaRiempire);
-  } else {
-    let nuovaArrTipiSel = [];
-    arrayDaRiempire.forEach((tipo) => {
-      if (tipo != event.target.closest("span").id) {
-        nuovaArrTipiSel.push(tipo);
-      }
-    });
-    return arrayDaRiempire;
-    // console.log(arrayDaRiempire);
-  }
-  return arrayDaRiempire;
-}
-
 export {
   TIPI_POKEMON,
   GENERAZIONI,
@@ -268,5 +250,4 @@ export {
   stileEtichettaTipoStatica,
   attivaTabGenerazioni,
   salvaSingoloPokemonLocal,
-  creaArrayTipiSelezionati,
 };

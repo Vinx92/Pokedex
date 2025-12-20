@@ -6,7 +6,6 @@ import {
   TIPI_POKEMON,
   GENERAZIONI,
   salvaSingoloPokemonLocal,
-  creaArrayTipiSelezionati,
   stileEtichettaTipoDinamica,
 } from "../function/funzioniCerca.js";
 
@@ -44,19 +43,23 @@ CONT_CERCA_TIPO.addEventListener("click", (e) => {
       );
       arrTipiSelezionati.splice(indiceDaCancellare, 1);
     }
-    console.log(arrTipiSelezionati);
     arrPokemonPerTipo.clear();
-    console.log(arrPokemonPerTipo)
-    pokemon.forEach((singPoke) => {
-      singPoke.types.forEach((singPokeTipo) => {
-        arrTipiSelezionati.forEach((tipo) => {
-          if (tipo == singPokeTipo.type.name) {
-            arrPokemonPerTipo.add(singPoke);
-          }
+    if (arrTipiSelezionati.length >= 1) {
+      pokemon.forEach((singPoke) => {
+        singPoke.types.forEach((singPokeTipo) => {
+          arrTipiSelezionati.forEach((tipo) => {
+            if (tipo == singPokeTipo.type.name) {
+              arrPokemonPerTipo.add(singPoke);
+            }
+          });
         });
       });
-    });
-    console.log(arrPokemonPerTipo);
+      CONT_CARD_POKEMON.innerHTML = "";
+      creaCard(CONT_CARD_POKEMON, arrPokemonPerTipo);
+    } else {
+      CONT_CARD_POKEMON.innerHTML = "";
+      creaCard(CONT_CARD_POKEMON, pokemon);
+    }
   }
 });
 
@@ -115,9 +118,25 @@ TAB_GENERAZIONI.addEventListener("click", async (e) => {
       TERZA.classList.toggle("bg-red-500");
       break;
   }
-  CONT_CARD_POKEMON.innerHTML = "";
-  CONT_CARD_POKEMON.scrollTop;
-  creaCard(CONT_CARD_POKEMON, pokemon);
+  arrPokemonPerTipo.clear();
+  if (arrTipiSelezionati.length >= 1) {
+    pokemon.forEach((singPoke) => {
+      singPoke.types.forEach((singPokeTipo) => {
+        arrTipiSelezionati.forEach((tipo) => {
+          if (tipo == singPokeTipo.type.name) {
+            arrPokemonPerTipo.add(singPoke);
+          }
+        });
+      });
+    });
+    CONT_CARD_POKEMON.innerHTML = "";
+    creaCard(CONT_CARD_POKEMON, arrPokemonPerTipo);
+    CONT_CARD_POKEMON.scrollTop;
+  } else {
+    CONT_CARD_POKEMON.innerHTML = "";
+    creaCard(CONT_CARD_POKEMON, pokemon);
+    CONT_CARD_POKEMON.scrollTop;
+  }
   CONT_LOAD.classList.remove("nascosto-caricamento");
   CONT_LOAD.classList.add("hidden");
 });

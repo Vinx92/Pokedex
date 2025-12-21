@@ -31,6 +31,7 @@ generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD);
 creaCard(CONT_CARD_POKEMON, pokemon);
 
 CONT_CERCA_TIPO.addEventListener("click", (e) => {
+  CERCA_POKEMON.value = "";
   if (e.target.tagName == "LABEL") {
     stileEtichettaTipoDinamica(e.target.textContent, e.target);
   }
@@ -65,11 +66,13 @@ CONT_CERCA_TIPO.addEventListener("click", (e) => {
 
 CONT_CARD_POKEMON.addEventListener("click", (e) => {
   salvaSingoloPokemonLocal(pokemon, e);
+  window.location = "../pages/cerca.html"
 });
 
 TAB_GENERAZIONI.addEventListener("click", async (e) => {
   CONT_LOAD.classList.add("nascosto-caricamento");
   CONT_LOAD.classList.remove("hidden");
+  CERCA_POKEMON.value = "";
   switch (e.target.id) {
     case "prima":
       pokemon = await pokemonGenerazione(
@@ -156,6 +159,10 @@ GO_TOP.addEventListener("click", () => {
 CERCA_POKEMON.addEventListener("input", (e) => {
   CONT_LOAD.classList.add("nascosto-caricamento");
   CONT_LOAD.classList.remove("hidden");
+  arrTipiSelezionati = [];
+  arrPokemonPerTipo.clear();
+  CONT_CERCA_TIPO.innerHTML = "";
+  generaCercaTipo(CONT_CERCA_TIPO, TIPI_POKEMON, CONT_LOAD);
   CONT_CARD_POKEMON.innerHTML = "";
   let arrayPokemonCercati = pokemon.filter((singPoke) =>
     singPoke.name.includes(e.target.value)

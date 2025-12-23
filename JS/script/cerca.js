@@ -1,4 +1,5 @@
-import { stileEtichettaTipoStatica } from "../function/funzioniCerca.js";
+import { evoluzioniPokemon } from "../../api/chiamatePokeApi.js";
+import { stileEtichettaTipoStatica } from "../function/funzioniCerca.js"
 
 let pokemonLocalStorage = JSON.parse(localStorage.getItem("pokemonCliccato"));
 const CONT_INFO_POKE = document.getElementById("cont-inf-poke");
@@ -50,6 +51,7 @@ const CONTROLLO_PER_VERSO_POKEMON = document.createElement("img");
 CONTROLLO_PER_VERSO_POKEMON.src = "../asset/play-musica.png";
 CONTROLLO_PER_VERSO_POKEMON.classList = "cursor-pointer";
 BOX_POKEMON.appendChild(CONTROLLO_PER_VERSO_POKEMON);
+evoluzioniPokemon(pokemonLocalStorage.species.url, BOX_POKEMON)
 
 CONTROLLO_PER_VERSO_POKEMON.addEventListener("click",()=>{
   VERSO_POKEMON.play()

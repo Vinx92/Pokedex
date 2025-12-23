@@ -66,12 +66,13 @@ CONT_CERCA_TIPO.addEventListener("click", (e) => {
 
 CONT_CARD_POKEMON.addEventListener("click", (e) => {
   salvaSingoloPokemonLocal(pokemon, e);
-  window.location = "../pages/cerca.html"
+  window.location = "../pages/cerca.html";
 });
 
 TAB_GENERAZIONI.addEventListener("click", async (e) => {
   CONT_LOAD.classList.add("nascosto-caricamento");
   CONT_LOAD.classList.remove("hidden");
+  CONT_CARD_POKEMON.scrollTop = 0 + "px";
   CERCA_POKEMON.value = "";
   switch (e.target.id) {
     case "prima":
@@ -134,7 +135,6 @@ TAB_GENERAZIONI.addEventListener("click", async (e) => {
     });
     CONT_CARD_POKEMON.innerHTML = "";
     creaCard(CONT_CARD_POKEMON, arrPokemonPerTipo);
-    CONT_CARD_POKEMON.scrollTop;
   } else {
     CONT_CARD_POKEMON.innerHTML = "";
     creaCard(CONT_CARD_POKEMON, pokemon);

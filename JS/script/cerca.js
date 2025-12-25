@@ -3,26 +3,18 @@ import { stileEtichettaTipoStatica } from "../function/funzioniCerca.js"
 
 let pokemonLocalStorage = JSON.parse(localStorage.getItem("pokemonCliccato"));
 const CONT_INFO_POKE = document.getElementById("cont-inf-poke");
+const NOME_POKEMON = document.getElementById("nome-pokemon");
+const POS_POKEMON = document.getElementById("pos-pokemon");
 console.log(pokemonLocalStorage);
 
-const BOX_NOME_POSIZIONE = document.createElement("div");
-BOX_NOME_POSIZIONE.classList =
-  "flex items-stretch justify-center gap-3 bg-red-500 p-1 rounded-md border-1 border-red-100";
-CONT_INFO_POKE.appendChild(BOX_NOME_POSIZIONE);
-const H2 = document.createElement("h2");
 let nomePokemon = pokemonLocalStorage.name;
 let letteraMaiuscola = pokemonLocalStorage.name[0].toLocaleUpperCase();
 let nomeConMaiuscola = nomePokemon.replace(
   pokemonLocalStorage.name[0],
   letteraMaiuscola
 );
-H2.textContent = nomeConMaiuscola;
-H2.classList = "fascinate-regular text-4xl";
-BOX_NOME_POSIZIONE.appendChild(H2);
-const SPAN_POSIZIONE = document.createElement("span");
-SPAN_POSIZIONE.textContent = `#${pokemonLocalStorage.id}`;
-SPAN_POSIZIONE.classList = "text-gray-300 font-black text-lg";
-BOX_NOME_POSIZIONE.appendChild(SPAN_POSIZIONE);
+NOME_POKEMON.textContent = nomeConMaiuscola;
+POS_POKEMON.textContent = `#${pokemonLocalStorage.id}`;
 const BOX_POKEMON = document.createElement("div");
 BOX_POKEMON.classList =
   "w-full-h-full bg-red-500 rounded-md border-2 border-red-100 mt-3 p-3";

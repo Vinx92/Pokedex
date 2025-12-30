@@ -1,10 +1,23 @@
 import { evoluzioniPokemon } from "../../api/chiamatePokeApi.js";
-import { stileEtichettaTipoStatica } from "../function/funzioniCerca.js"
+import { stileEtichettaTipoStatica } from "../function/funzioniCerca.js";
 
 let pokemonLocalStorage = JSON.parse(localStorage.getItem("pokemonCliccato"));
 const CONT_INFO_POKE = document.getElementById("cont-inf-poke");
 const NOME_POKEMON = document.getElementById("nome-pokemon");
 const POS_POKEMON = document.getElementById("pos-pokemon");
+const IMG_POKEMON = document.getElementById("img-pokemon");
+const CONT_TIPI = document.getElementById("cont-tipi");
+const VERSO_POKEMON = document.getElementById("verso-pokemon");
+const PLAY_VERSO = document.getElementById("play-verso");
+const CONT_STATISTICHE = document.getElementById("cont-statistiche");
+const CONT_VERSIONI_PRESENTI_POKEMON = document.getElementById(
+  "cont-versioni-presenti-pokemon"
+);
+const IMG_PRIMA_EV = document.getElementById("img-prima-ev");
+const IMG_SECONDA_EV = document.getElementById("img-seconda-ev");
+const IMG_TERZA_EV = document.getElementById("img-terza-ev");
+const TESTO_SCONDA_EV = document.getElementById("testo-seconda-ev");
+const TESTO_TERZA_EV = document.getElementById("testo-terza-ev");
 console.log(pokemonLocalStorage);
 
 let nomePokemon = pokemonLocalStorage.name;
@@ -15,36 +28,59 @@ let nomeConMaiuscola = nomePokemon.replace(
 );
 NOME_POKEMON.textContent = nomeConMaiuscola;
 POS_POKEMON.textContent = `#${pokemonLocalStorage.id}`;
-const BOX_POKEMON = document.createElement("div");
-BOX_POKEMON.classList =
-  "w-full-h-full bg-red-500 rounded-md border-2 border-red-100 mt-3 p-3";
-CONT_INFO_POKE.appendChild(BOX_POKEMON);
-const CONT_IMG_TIPI = document.createElement("div");
-BOX_POKEMON.appendChild(CONT_IMG_TIPI);
-const BOX_IMG_POKEMON = document.createElement("div");
-BOX_IMG_POKEMON.classList =
-  "bg-red-300 rounded-md border-2 border-red-100";
-CONT_IMG_TIPI.appendChild(BOX_IMG_POKEMON);
-const IMG_POKEMON = document.createElement("img");
 IMG_POKEMON.src = pokemonLocalStorage.sprites.front_default;
-BOX_IMG_POKEMON.appendChild(IMG_POKEMON);
-const BOX_TIPI = document.createElement("div");
-CONT_IMG_TIPI.appendChild(BOX_TIPI);
 pokemonLocalStorage.types.forEach((tipo) => {
   const SPAN = document.createElement("span");
-  SPAN.textContent = tipo.type.name;
+  SPAN.textContent = tipo.type.name.toLocaleUpperCase();
   stileEtichettaTipoStatica(tipo.type.name, SPAN);
-  BOX_TIPI.appendChild(SPAN);
+  SPAN.classList.add("font-semibold");
+  CONT_TIPI.appendChild(SPAN);
 });
-const VERSO_POKEMON = document.createElement("audio");
 VERSO_POKEMON.src = pokemonLocalStorage.cries.legacy;
-BOX_POKEMON.appendChild(VERSO_POKEMON);
-const CONTROLLO_PER_VERSO_POKEMON = document.createElement("img");
-CONTROLLO_PER_VERSO_POKEMON.src = "../asset/play-musica.png";
-CONTROLLO_PER_VERSO_POKEMON.classList = "cursor-pointer";
-BOX_POKEMON.appendChild(CONTROLLO_PER_VERSO_POKEMON);
-evoluzioniPokemon(pokemonLocalStorage.species.url, BOX_POKEMON)
+pokemonLocalStorage.stats.forEach((stat) => {
+  let div = document.createElement("div");
+  div.classList = "flex justify-between gap-2";
+  let statistica = document.createElement("span");
+  statistica.classList = "rounded-md bg-red-300 px-3 py-1 font-semibold";
+  let numero = document.createElement("span");
+  numero.classList = "rounded-md bg-red-300 px-3 py-1";
+  CONT_STATISTICHE.appendChild(div);
+  statistica.textContent = `${stat.stat.name.toLocaleUpperCase()} :`;
+  div.appendChild(statistica);
+  numero.textContent = stat.base_stat;
+  div.appendChild(numero);
+});
+pokemonLocalStorage.game_indices.forEach((gioco) => {
+  let li = document.createElement("li");
+  if (gioco.version.name.includes("-")) {
+    let nomeGioco = gioco.version.name.replaceAll("-", " ");
+    let letteraMaiuscola = gioco.version.name[0].toLocaleUpperCase();
+    let nomeConMaiuscola = nomeGioco.replace(
+      gioco.version.name[0],
+      letteraMaiuscola
+    );
+    li.textContent = nomeConMaiuscola;
+    CONT_VERSIONI_PRESENTI_POKEMON.appendChild(li);
+  } else {
+    let nomeGioco = gioco.version.name;
+    let letteraMaiuscola = gioco.version.name[0].toLocaleUpperCase();
+    let nomeConMaiuscola = nomeGioco.replace(
+      gioco.version.name[0],
+      letteraMaiuscola
+    );
+    li.textContent = nomeConMaiuscola;
+    CONT_VERSIONI_PRESENTI_POKEMON.appendChild(li);
+  }
+});
+evoluzioniPokemon(
+  pokemonLocalStorage.species.url,
+  IMG_PRIMA_EV,
+  IMG_SECONDA_EV,
+  IMG_TERZA_EV,
+  TESTO_SCONDA_EV,
+  TESTO_TERZA_EV
+);
 
-CONTROLLO_PER_VERSO_POKEMON.addEventListener("click",()=>{
-  VERSO_POKEMON.play()
-})
+PLAY_VERSO.addEventListener("click", () => {
+  VERSO_POKEMON.play();
+});

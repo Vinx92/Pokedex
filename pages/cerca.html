@@ -18,8 +18,6 @@
                     <h1 class="font-black text-6xl fascinate-regular">Pokédex</h1>
                 </div>
             </a>
-            <input class="bg-red-300 m-2 p-2 rounded-md w-xs focus:outline-2 focus:outline-red-100" type="search"
-                name="cerca" id="cerca" placeholder="🔍 Cerca">
         </div>
         <div class="rounded-full bg-red-300 overflow-hidden w-10 h-10 flex items-center justify-center cursor-pointer">
             <img class="object-fill object-center" src="../asset/user.png" alt="Icona Profilo">
@@ -52,7 +50,7 @@
                 </ul>
             </nav>
         </aside>
-        <section id="cont-inf-poke" class="p-3 w-5/6">
+        <section id="cont-inf-poke" class="p-3 w-5/6 flex flex-col">
             <div id="box-nome-pos-indietro"
                 class="flex justify-center items-center bg-red-500 p-1 rounded-md border-1 border-red-100 relative">
                 <div class="absolute left-0">
@@ -61,6 +59,48 @@
                 <div class="flex gap-2">
                     <h2 id="nome-pokemon" class="fascinate-regular text-4xl">Nome Pokémon</h2>
                     <span id="pos-pokemon" class="text-gray-300 font-black text-lg">#Numero</span>
+                </div>
+            </div>
+            <div class="h-[50%] flex justify-between flex-wrap pt-3">
+                <div id="box-img-tipi"
+                    class="w-[35%] h-[50%] flex justify-between p-3 rounded-md bg-red-500 border-1 border-red-100 relative">
+                    <div id="play-verso" class="absolute top-[20px] right-[15px] cursor-pointer">
+                        <audio id="verso-pokemon" src=""></audio>
+                        <img src="../asset/play-musica.png" alt="simbolo musica">
+                    </div>
+                    <img id="img-pokemon" src="" alt="Immagine Pokémon selezionato"
+                        class="rounded-md bg-red-300 border-1 border-red-100">
+                    <div id="cont-tipi" class="flex flex-col justify-end gap-3"></div>
+                </div>
+                <div id="cont-statistiche"
+                    class="w-max h-max flex flex-col p-3 bg-red-500 rounded-md border-1 border-red-100 gap-2">
+                    <h3 class="text-center fascinate-regular text-xl my-3">Statistiche Basi</h3>
+                </div>
+                <div class="w-[35%] h-max p-3 bg-red-500 rounded-md border-1 border-red-100">
+                    <h3 class="text-center fascinate-regular text-xl my-3">Presente nei Giochi:</h3>
+                    <ol id="cont-versioni-presenti-pokemon"
+                        class="list-decimal list-inside grid grid-cols-3  gap-2 p-3 rounded-md bg-red-300 border-1 border-red-100">
+                    </ol>
+                </div>
+            </div>
+            <div class="h-[50%]">
+                <h3
+                    class="text-center fascinate-regular text-xl my-3 bg-red-500 p-1 rounded-md border-1 border-red-100">
+                    Evoluzioni</h3>
+                <div id="cont-evoluzioni" class="flex bg-red-500 p-3 rounded-md border-1 border-red-100">
+                    <div id="cont-prima-ev" class="">
+                        <img id="img-prima-ev" src="" alt="Prima evoluzione">
+                    </div>
+                    <div id="cont-seconda-ev" class="">
+                        <img src="../asset/freccia-destra.png" alt="Freccia destra">
+                        <img id="img-seconda-ev" src="" alt="Seconda evoluzione">
+                        <p id="testo-seconda-ev"></p>
+                    </div>
+                    <div id="cont-terza-ev" class="">
+                        <img src="../asset/freccia-destra.png" alt="Freccia destra">
+                        <img id="img-terza-ev" src="" alt="Terza evoluzione">
+                        <p id="testo-terza-ev"></p>
+                    </div>
                 </div>
             </div>
         </section>
